@@ -1,0 +1,4 @@
+com/abouchama/mqcameldemo/ActiveMQComponentFactory.class
+com/abouchama/mqcameldemo/mq/ActiveMQConfigurer.class
+com/abouchama/mqcameldemo/mq/ActiveMQConfig.class
+com/abouchama/mqcameldemo/MyRoutes.class
