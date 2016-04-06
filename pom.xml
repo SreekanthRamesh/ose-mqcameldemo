@@ -228,8 +228,8 @@
                 <env>
                   <JAVA_LIB_DIR>/deployments/lib</JAVA_LIB_DIR>
                   <JAVA_MAIN_CLASS>org.apache.camel.cdi.Main</JAVA_MAIN_CLASS>
-                  <BROKER_AMQ_TCP_USERNAME>admin</BROKER_AMQ_TCP_USERNAME>
-				  <BROKER_AMQ_TCP_PASSWORD>admin</BROKER_AMQ_TCP_PASSWORD>
+                  <AMQ62_AMQ_TCP_USERNAME>admin</AMQ62_AMQ_TCP_USERNAME>
+				  <AMQ62_AMQ_TCP_PASSWORD>admin</AMQ62_AMQ_TCP_PASSWORD>
                 </env>
               </build>
             </image>

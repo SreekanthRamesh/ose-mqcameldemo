@@ -58,3 +58,4 @@ Alternatively the template file can be used to create an OpenShift application t
 You can find more details about running this [quickstart](http://fabric8.io/guide/quickstarts/running.html) on the website. This also includes instructions how to change the Docker image user and registry.
 
 
+# ose-mqcameldemo
