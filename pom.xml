@@ -19,7 +19,7 @@
     <fabric8.version>2.2.0.redhat-079</fabric8.version>
     <docker.maven.plugin.version>0.13.6</docker.maven.plugin.version>
 
-
+	<http.port>9191</http.port>
 
     <activemq.version>5.11.0.redhat-621084</activemq.version>
     <cxf.version>3.0.4.redhat-621084</cxf.version>
@@ -34,8 +34,11 @@
     <fabric8.label.container>java</fabric8.label.container>
     <fabric8.label.group>quickstarts</fabric8.label.group>
     <fabric8.iconRef>camel</fabric8.iconRef>
+    <fabric8.service.port>80</fabric8.service.port>
+    <fabric8.service.containerPort>${http.port}</fabric8.service.containerPort>
     
     <fabric8.env.A_MQ_SERVICE_NAME>amq62-amq-tcp</fabric8.env.A_MQ_SERVICE_NAME>
+    
   </properties>
 
   <dependencyManagement>
@@ -68,6 +71,41 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cdi</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring</artifactId>
+    </dependency>
+<!-- For Web Service with CXF -->
+	 <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf</artifactId>
+    </dependency>
+		
+	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-transports-http-jetty</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-jetty</artifactId>
+	    <version>2.15.1.redhat-621084</version>
+	</dependency>	
+	
+	<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson</artifactId>
+    </dependency>
+   	
+   	<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-websocket</artifactId>
     </dependency>
 
     <!-- cdi api -->
@@ -230,7 +268,12 @@
                   <JAVA_MAIN_CLASS>org.apache.camel.cdi.Main</JAVA_MAIN_CLASS>
                   <AMQ62_AMQ_TCP_USERNAME>admin</AMQ62_AMQ_TCP_USERNAME>
 				  <AMQ62_AMQ_TCP_PASSWORD>admin</AMQ62_AMQ_TCP_PASSWORD>
+                
+                  <HTTP_PORT>${http.port}</HTTP_PORT>
                 </env>
+                <ports>
+                  <port>${http.port}</port>
+                </ports>
               </build>
             </image>
           </images>

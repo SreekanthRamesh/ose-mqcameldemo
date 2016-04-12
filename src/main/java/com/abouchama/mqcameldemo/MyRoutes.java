@@ -20,7 +20,7 @@ import io.fabric8.annotations.ServiceName;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
-
+import org.apache.camel.builder.RouteBuilder;
 import javax.inject.Inject;
 
 /**
@@ -36,7 +36,21 @@ public class MyRoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer://foo")
+    	
+    	/*restConfiguration().component("jetty")
+        .dataFormatProperty("prettyPrint", "true")
+        .port(9191);
+    	
+    	rest("/FIS").description("User rest service")
+        .consumes("application/json").produces("application/json")
+        .get("/{name}").to("direct:order");
+    	
+    	
+    	from("direct:order")
+        .setBody(simple("Bienvenue: ${headers.name} on Fuse Integration Service !"))
+        .to("jms:queue:REST.FIS?exchangePattern=InOnly");*/
+    	
+        from("timer://foo?period=500")
                 .setBody(constant("Everything is awesome!"))
                 .to("jms:queue:TEST.FOO");
 
