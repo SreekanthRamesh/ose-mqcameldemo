@@ -16,10 +16,15 @@
 package com.abouchama.mqcameldemo;
 
 import io.fabric8.annotations.Alias;
+import io.fabric8.annotations.External;
 import io.fabric8.annotations.ServiceName;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
+import org.apache.camel.cdi.Uri;
+import org.apache.deltaspike.core.api.config.ConfigProperty;
 import org.apache.camel.builder.RouteBuilder;
 import javax.inject.Inject;
 
@@ -29,15 +34,32 @@ import javax.inject.Inject;
 @ContextName("myCdiCamelContext")
 public class MyRoutes extends RouteBuilder {
 
+	//String url= "tcp://172.17.0.4:61616";
+	//String url= "failover:tcp//svc-u5.rhel-cdk.10.1.2.2.xip.io:80";
+	//String url= "failover:tcp://svc-u5.rhel-cdk.10.1.2.2.xip.io";
+	//String url= "tcp://brokers.default.10.1.2.2.xip.io:61616";
+	
     @Inject
-    @ServiceName("amq62-amq-tcp")
+    @ServiceName("brokers")
+    //@ServiceName("svc-u5")
+    //@ConfigProperty(name = "BrokerURL", defaultValue = "tcp://svc-u5.10.1.2.2.xip.io")
+    //@Uri(value = "tcp://svc-u5.10.1.2.2.xip.io")
     @Alias("jms")
     ActiveMQComponent activeMQComponent;
+
+    
 
     @Override
     public void configure() throws Exception {
     	
-    	/*restConfiguration().component("jetty")
+        /**ActiveMQComponent activeMQComponent = new ActiveMQComponent();
+        activeMQComponent.setBrokerURL(url);
+        activeMQComponent.setUserName("admin");
+        activeMQComponent.setPassword("admin");
+        getContext().addComponent("jms", activeMQComponent);**/
+        
+    	/** Rest Camel Route **/ 
+    	/**restConfiguration().component("jetty")
         .dataFormatProperty("prettyPrint", "true")
         .port(9191);
     	
@@ -47,14 +69,28 @@ public class MyRoutes extends RouteBuilder {
     	
     	
     	from("direct:order")
-        .setBody(simple("Bienvenue: ${headers.name} on Fuse Integration Service !"))
-        .to("jms:queue:REST.FIS?exchangePattern=InOnly");*/
+        .setBody(simple("Bienvenue: ${headers.name} on Fuse Integration Service !"));**/
+        
+        //.to("jms:queue:REST.FIS?exchangePattern=InOnly");
     	
+        
         from("timer://foo?period=500")
                 .setBody(constant("Everything is awesome!"))
-                .to("jms:queue:TEST.FOO");
-
-        from("jms:queue:TEST.FOO")
+                .to("jms:queue:TEST.1");
+        
+        /**from("jms:queue:TEST.FOO.1")
                 .to("log:output");
+    	
+        from("jms:queue:TEST.FOO.2")
+        .to("log:output");
+        
+        from("jms:queue:TEST.FOO.3")
+        .to("log:output");**/
+        
+        
+    	/**from("timer://foo?period=500")
+        .setBody(constant("{user:kilchy}"))
+        .to("log:output")
+    	.to("elasticsearch://elasticsearch?ip=172.30.56.92&port=9300&operation=INDEX&indexName=twitter&indexType=tweet");**/
     }
 }

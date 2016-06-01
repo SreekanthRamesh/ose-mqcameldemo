@@ -52,6 +52,9 @@ public class ActiveMQConfigurer {
         connectionFactory.setUseAsyncSend(config.getUseAsyncSend());
         connectionFactory.setUserName(config.getUsername());
         connectionFactory.setPassword(config.getPassword());
+        //connectionFactory.setUserName("admin");
+        //connectionFactory.setPassword("admin");
+        //connectionFactory.setBrokerURL("tcp://172.17.0.4:61616");
         connectionFactory.setUseCompression(config.getUseCompression());
         return connectionFactory;
     }

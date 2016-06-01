@@ -21,23 +21,33 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 
 public class ActiveMQComponentFactory {
+    
+    //String url= "tcp://172.17.0.4:61616";
 
     @Factory
     @ServiceName
+    //public ActiveMQComponent create(@Configuration ActiveMQConnectionFactory factory) {
+    //@Produces
     public ActiveMQComponent create(@ServiceName ActiveMQConnectionFactory factory) {
         ActiveMQComponent component = new ActiveMQComponent();
+        //component.setBrokerURL(url);
+        //component.setUserName("admin");
+        //component.setPassword("admin");
         component.setConnectionFactory(factory);
         return component;
     }
 
-    /*
-    @Factory
-    @ServiceName
-    public ActiveMQComponent create(@ServiceName String url, @Configuration ActiveMQConfig config) {
+	
+    //@Factory
+    //@ServiceName
+    //@Produces
+    /**public ActiveMQComponent create(@Configuration ActiveMQConfig config) {
         ActiveMQComponent component = new ActiveMQComponent();
         component.setBrokerURL(url);
+        component.setUserName("admin");
+        component.setPassword("admin");
         component.setConnectionFactory(new ActiveMQConnectionFactory(url));
         return component;
-    }*/
-
+    }
+**/
 }

@@ -37,7 +37,8 @@
     <fabric8.service.port>80</fabric8.service.port>
     <fabric8.service.containerPort>${http.port}</fabric8.service.containerPort>
     
-    <fabric8.env.A_MQ_SERVICE_NAME>amq62-amq-tcp</fabric8.env.A_MQ_SERVICE_NAME>
+    <fabric8.env.A_MQ_SERVICE_NAME>brokers</fabric8.env.A_MQ_SERVICE_NAME>
+    <!-- fabric8.env.A_MQ_SERVICE_NAME>svc-u5</fabric8.env.A_MQ_SERVICE_NAME-->
     
   </properties>
 
@@ -106,6 +107,10 @@
    	<dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-websocket</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-elasticsearch</artifactId>
     </dependency>
 
     <!-- cdi api -->
@@ -266,9 +271,12 @@
                 <env>
                   <JAVA_LIB_DIR>/deployments/lib</JAVA_LIB_DIR>
                   <JAVA_MAIN_CLASS>org.apache.camel.cdi.Main</JAVA_MAIN_CLASS>
-                  <AMQ62_AMQ_TCP_USERNAME>admin</AMQ62_AMQ_TCP_USERNAME>
-				  <AMQ62_AMQ_TCP_PASSWORD>admin</AMQ62_AMQ_TCP_PASSWORD>
-                
+                  <SVC_U5_USERNAME>admin</SVC_U5_USERNAME>
+				  <SVC_U5_PASSWORD>admin</SVC_U5_PASSWORD>
+				  <BROKERS_USERNAME>admin</BROKERS_USERNAME>
+				  <BROKERS_PASSWORD>admin</BROKERS_PASSWORD>
+				<MQCAMEL_USERNAME>admin</MQCAMEL_USERNAME>
+				<MQCAMEL_PASSwORD>admin</MQCAMEL_PASSwORD>                
                   <HTTP_PORT>${http.port}</HTTP_PORT>
                 </env>
                 <ports>

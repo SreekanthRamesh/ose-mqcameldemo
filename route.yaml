@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: brokers
+spec:
+  host: brokers.default
+  to:
+    kind: Service
+    name: svc-u5
+status: {}

@@ -52,6 +52,7 @@ public class ActiveMQConfig {
     private static final String USE_COMPRESSION = "USE_COMPRESSION";
     private static final String USERNAME="USERNAME";
     private static final String PASSWORD="PASSWORD";
+    //private static final String BROKERURL="BROKERURL";
 
     @Inject
     @ConfigProperty(name = DISPATCH_ASYNC, defaultValue = "true")
@@ -176,7 +177,17 @@ public class ActiveMQConfig {
     @Inject
     @ConfigProperty(name = PASSWORD)
     private String password;
-
+    
+    
+    /** FABB 
+    @Inject
+    @ConfigProperty(name = BROKERURL, defaultValue = "tcp://tcp://svc-u5.10.1.2.2.xip.io")
+    private String brokerURL;
+    
+    public String getBrokerURL() {
+        return brokerURL;
+    }
+ **/
     public Boolean getDispatchAsync() {
         return dispatchAsync;
     }
